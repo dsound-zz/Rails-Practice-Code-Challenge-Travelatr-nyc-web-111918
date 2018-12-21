@@ -1,14 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Travelatr</title>
-    <%= csrf_meta_tags %>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
   </head>
 
   <body>
+
+<ul class="breadcrumbs">
+
+
+<li>  <%= button_to "Bloggers", bloggers_path, method: "get", class: "button info" %></li>
+<li>  <%= button_to "Destinations", destinations_path, method: "get", class: "button info" %></li>
+<li>  <%= button_to "Posts", posts_path, method: "get", class: "button info" %></li>
+
+</ul>
+
+<%= form_tag search_path, method: :get do %>
+<h6>Search destinations: <%= text_field_tag :q, params[:q]%></h6>
+            <%= submit_tag 'Search' %><br><br>
+            <% end %>
+
+
     <%= yield %>
+
+
   </body>
 </html>

@@ -1,0 +1,9 @@
+
+  <% if @results.length == 0 %>
+  <% flash[:notice] = "Sorry no results" %>
+  <h4> <%= flash[:notice] %> </h4>
+    <% else %>
+<% @results.map do |result| %>
+<h3>  <%= link_to result.name, destination_path(result) %>, <%= link_to result.country, destination_path(result) %> </h3>
+<% end %>
+<% end %>

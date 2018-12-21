@@ -1,0 +1,22 @@
+<h4>Destination Page</h4>
+
+
+  <h5> <%= " #{@destination.name}, #{@destination.country} "  %> </h5>
+
+  <h4>Top 5 posts for this destination</h4>
+    <% if @destination.posts == nil %>
+    <p>  <%= 'No posts yet!' %> </p>
+          <% else %>
+      <% @destination.posts.order(created_at: :desc).limit(5).map do |post| %>
+    <h6> <%= link_to post.title, post_path(post) %> </h6>
+          <% end %>
+            <% end %>
+         <% @destination.posts.order(likes: :desc).limit(1).map do |post| %>
+          <p>Top post:  <%= link_to post.title, post_path(post) %> </p>
+              <% end %>
+
+              <% age_total = @destination.posts.map { |post| post.blogger } %><br>
+
+        <% avg_age = age_total.map { |blog| blog.age } %>
+
+      <p>Average blooger age for this post:   <%= avg_age.inject(:+)/avg_age.size %>

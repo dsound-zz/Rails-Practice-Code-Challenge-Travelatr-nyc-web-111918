@@ -1,0 +1,23 @@
+
+  <h1>Create a destination!</h1>
+
+  <% if @bdestination.errors.any? %>
+  <% @destination.errors.full_messages.each do |message|  %>
+<h5>  <%= message %> </h5>
+  <% end %>
+  <% end %>
+
+<div>
+  <%= form_for @destination, :html => {class:'row'} do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name, reequired: true %>
+  <%= f.label :country  %>
+  <%= f.text_area :country, required: true %>
+  <%= f.collection_select :bloggers, Blogger.all, :id, :name, prompt: true %>
+  <%= f.submit %>
+  <% end %>
+
+</div>
+
+  </body>
+  </html>

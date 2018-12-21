@@ -1,0 +1,15 @@
+<h1>Destinations</h1>
+
+<%= button_to 'Create Destination', new_destination_path, method: "get",class: "alert button" %>
+
+<div class="progress [radius round]">
+  <span class="meter" style="width:70%;">
+</span>
+</div>
+
+<ul class="side-nav">
+<% @destinations.each do |dest| %>
+
+  <p><%= link_to "#{dest.name}, #{dest.country}", destination_path(dest), class: "active" %></p>
+  <% end %>
+  </ul>

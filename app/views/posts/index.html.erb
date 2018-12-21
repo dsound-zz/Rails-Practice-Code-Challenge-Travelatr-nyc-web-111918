@@ -1,0 +1,16 @@
+<h1>Posts</h1>
+
+<%= button_to 'Create Post', new_post_path, method: "get",class: "alert button" %>
+
+<div class="progress [radius round]">
+  <span class="meter" style="width:70%;">
+</span>
+</div>
+
+<ul class="side-nav">
+
+<% @posts.each do |post| %>
+<p> <%= link_to post.title, post_path(post), class: "active" %> </p>
+
+<% end %>
+</ul>

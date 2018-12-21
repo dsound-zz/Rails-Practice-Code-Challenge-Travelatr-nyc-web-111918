@@ -1,0 +1,32 @@
+<h1>Blogger Page</h1>
+
+  <p><%= flash[:notice] %></p>
+
+
+<p>Name: <%= @blogger.name %></p>
+<p>Bio: <%= @blogger.bio %></p>
+<p>Age: <%= @blogger.age %></p>
+
+<h3>Posts</h3>
+
+
+            <% @blogger.posts.order(likes: :desc).limit(1).map do |post| %>
+      <h4>Top Post: <%= link_to post.title, post_path(post) %></h4>
+                <% end %>
+                <br>
+              <% if @blogger.posts.length == 0 %>
+            <p>  <%= "No posts yet!" %> </p>
+                <% else %>
+  <% @blogger.posts.each do |post| %>
+
+  <p>Post Title: <%= link_to post.title, post_path(post) %> </p>
+  <p>Likes: <%= post.likes %> </p>
+  <% end %>
+    <% end %>
+
+
+  <h1>Favorite Destinations</h1>
+
+  <%  @blogger.posts.order(likes: :desc).limit(5).map do |post| %>
+  <p>  <%= link_to post.destination.name_country, destination_path(post) %></P>
+    <% end %>
